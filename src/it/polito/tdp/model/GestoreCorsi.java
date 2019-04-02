@@ -2,8 +2,10 @@ package it.polito.tdp.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import it.polito.tdp.corsi.db.CorsoDAO;
+import it.polito.tdp.corsi.db.StudenteDAO;
 
 //è la classe model
 public class GestoreCorsi {
@@ -26,6 +28,31 @@ public class GestoreCorsi {
 			}
 		}
 		return result;
+		//possiamo anche usare il metodo: return dao.listCorsiByPD
 	}
 
+	
+	/**
+	 * Metodo che dato un periodo restituisce il numero totale di iscritti ai corsi di quel periodo
+	 * @param periodo
+	 * @return mappa di corsi con chiave il corso e valore il num tot di iscritti
+	 */
+	public Map<Corso, Integer> getIscrittiCorsi(int periodo){
+		CorsoDAO dao=new CorsoDAO();
+		return dao.getIscrittiCorsi(periodo);
+	}
+
+
+	/**
+	 * Restituisce gli studenti iscritti ad un corso
+	 * @param codins
+	 * @return studenti
+	 */
+	public List<Studente> elencaStudenti(String codins) {
+		
+		StudenteDAO dao=new StudenteDAO();
+		return dao.elencaStudenti(codins);
+	}
+	
+	
 }
